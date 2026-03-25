@@ -86,6 +86,9 @@ export default function Index() {
               🔍 اكشف خسارتك مجاناً
             </Button>
             <p className="text-xs text-muted-foreground">مجاني تماماً • نتيجة فورية</p>
+            <Button onClick={() => navigate("/tools")} variant="outline" size="lg" className="w-full max-w-xs gap-2 border-primary/50 text-primary font-bold mt-2">
+              <Wrench className="h-5 w-5" /> 🔥 20 أداة مجانية للتجار
+            </Button>
           </div>
         )}
 
