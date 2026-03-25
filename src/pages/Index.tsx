@@ -11,7 +11,7 @@ import { shareForAccuracy, openWhatsApp } from "@/lib/share";
 const WHATSAPP_NUMBER = "201061067966";
 
 export default function Index() {
-  const [step, setStep] = useState<"hero" | "form" | "results">("hero");
+  const navigate = useNavigate();
   const [dailyMessages, setDailyMessages] = useState("");
   const [dailyOrders, setDailyOrders] = useState("");
   const [respondents, setRespondents] = useState("");
