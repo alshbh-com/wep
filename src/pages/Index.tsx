@@ -240,12 +240,12 @@ export default function Index() {
 
             {/* Viral Share */}
             <Button
-              onClick={shareUrl}
+              onClick={() => shareForAccuracy("كشف العملاء الهاربين", "/lost-orders")}
               variant="outline"
               size="lg"
               className="w-full gap-2 border-primary/50 text-primary font-bold"
             >
-              <Share2 className="h-5 w-5" /> 🔥 شوف كام صاحبك بيخسر
+              <Share2 className="h-5 w-5" /> 🔥 شارك مع صاحبك عشان نتيجة أدق
             </Button>
 
             {/* WhatsApp Direct */}
