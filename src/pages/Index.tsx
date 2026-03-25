@@ -195,6 +195,17 @@ export default function Index() {
               </CardContent>
             </Card>
 
+            {/* AI Rescue Plan */}
+            <AiAdvice
+              lostCustomers={result.lostCustomers}
+              lostMoney={result.lostMoney}
+              lossPercentage={result.lossPercentage}
+              dailyMessages={Number(dailyMessages)}
+              dailyOrders={Number(dailyOrders)}
+              respondents={Number(respondents)}
+              returns={Number(returns)}
+            />
+
             {/* Solution */}
             <Card className="border-primary/30 bg-card neon-glow">
               <CardContent className="space-y-4 p-5 text-center">
