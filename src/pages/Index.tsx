@@ -12,6 +12,7 @@ const WHATSAPP_NUMBER = "201061067966";
 
 export default function Index() {
   const navigate = useNavigate();
+  const [step, setStep] = useState<"hero" | "form" | "results">("hero");
   const [dailyMessages, setDailyMessages] = useState("");
   const [dailyOrders, setDailyOrders] = useState("");
   const [respondents, setRespondents] = useState("");
