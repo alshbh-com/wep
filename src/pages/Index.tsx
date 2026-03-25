@@ -10,20 +10,6 @@ import { shareForAccuracy, openWhatsApp } from "@/lib/share";
 
 const WHATSAPP_NUMBER = "201061067966";
 
-function openWhatsApp(message: string) {
-  window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`, "_blank");
-}
-
-function shareUrl() {
-  const text = "🔥 اكتشف كام عميل بيضيع منك كل شهر! جرب أداة كشف العملاء الهاربين مجاناً 👇";
-  const url = window.location.href;
-  if (navigator.share) {
-    navigator.share({ title: "كشف العملاء الهاربين", text, url });
-  } else {
-    window.open(`https://wa.me/?text=${encodeURIComponent(text + "\n" + url)}`, "_blank");
-  }
-}
-
 export default function Index() {
   const [step, setStep] = useState<"hero" | "form" | "results">("hero");
   const [dailyMessages, setDailyMessages] = useState("");
