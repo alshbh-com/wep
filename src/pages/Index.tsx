@@ -1,28 +1,17 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
 import { saveSubmission, type Submission } from "@/lib/storage";
-import { Ghost, MessageCircle, Send, Share2, TrendingDown, AlertTriangle, ShoppingCart, Building2, Store, Code2 } from "lucide-react";
+import { Ghost, MessageCircle, Send, Share2, TrendingDown, AlertTriangle, ShoppingCart, Building2, Store, Code2, Wrench } from "lucide-react";
 import AiAdvice from "@/components/AiAdvice";
+import { shareForAccuracy, openWhatsApp } from "@/lib/share";
 
 const WHATSAPP_NUMBER = "201061067966";
 
-function openWhatsApp(message: string) {
-  window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`, "_blank");
-}
-
-function shareUrl() {
-  const text = "🔥 اكتشف كام عميل بيضيع منك كل شهر! جرب أداة كشف العملاء الهاربين مجاناً 👇";
-  const url = window.location.href;
-  if (navigator.share) {
-    navigator.share({ title: "كشف العملاء الهاربين", text, url });
-  } else {
-    window.open(`https://wa.me/?text=${encodeURIComponent(text + "\n" + url)}`, "_blank");
-  }
-}
-
 export default function Index() {
+  const navigate = useNavigate();
   const [step, setStep] = useState<"hero" | "form" | "results">("hero");
   const [dailyMessages, setDailyMessages] = useState("");
   const [dailyOrders, setDailyOrders] = useState("");
@@ -98,6 +87,9 @@ export default function Index() {
               🔍 اكشف خسارتك مجاناً
             </Button>
             <p className="text-xs text-muted-foreground">مجاني تماماً • نتيجة فورية</p>
+            <Button onClick={() => navigate("/tools")} variant="outline" size="lg" className="w-full max-w-xs gap-2 border-primary/50 text-primary font-bold mt-2">
+              <Wrench className="h-5 w-5" /> 🔥 20 أداة مجانية للتجار
+            </Button>
           </div>
         )}
 
@@ -249,12 +241,12 @@ export default function Index() {
 
             {/* Viral Share */}
             <Button
-              onClick={shareUrl}
+              onClick={() => shareForAccuracy("كشف العملاء الهاربين", "/lost-orders")}
               variant="outline"
               size="lg"
               className="w-full gap-2 border-primary/50 text-primary font-bold"
             >
-              <Share2 className="h-5 w-5" /> 🔥 شوف كام صاحبك بيخسر
+              <Share2 className="h-5 w-5" /> 🔥 شارك مع صاحبك عشان نتيجة أدق
             </Button>
 
             {/* WhatsApp Direct */}
