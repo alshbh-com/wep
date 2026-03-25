@@ -4,6 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
 import { saveSubmission, type Submission } from "@/lib/storage";
 import { Ghost, MessageCircle, Send, Share2, TrendingDown, AlertTriangle, ShoppingCart, Building2, Store, Code2 } from "lucide-react";
+import AiAdvice from "@/components/AiAdvice";
 
 const WHATSAPP_NUMBER = "201061067966";
 
@@ -193,6 +194,17 @@ export default function Index() {
                 </p>
               </CardContent>
             </Card>
+
+            {/* AI Rescue Plan */}
+            <AiAdvice
+              lostCustomers={result.lostCustomers}
+              lostMoney={result.lostMoney}
+              lossPercentage={result.lossPercentage}
+              dailyMessages={Number(dailyMessages)}
+              dailyOrders={Number(dailyOrders)}
+              respondents={Number(respondents)}
+              returns={Number(returns)}
+            />
 
             {/* Solution */}
             <Card className="border-primary/30 bg-card neon-glow">
