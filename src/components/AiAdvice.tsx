@@ -1,5 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 import { Sparkles, Loader2 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 
@@ -15,28 +16,40 @@ interface AiAdviceProps {
 
 export default function AiAdvice(props: AiAdviceProps) {
   const [advice, setAdvice] = useState<string | null>(null);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [requested, setRequested] = useState(false);
 
-  useEffect(() => {
-    const fetchAdvice = async () => {
-      try {
-        const { data, error: fnError } = await supabase.functions.invoke("ai-advice", {
-          body: props,
-        });
+  const fetchAdvice = async () => {
+    setRequested(true);
+    setLoading(true);
+    setError(null);
+    try {
+      const { data, error: fnError } = await supabase.functions.invoke("ai-advice", {
+        body: props,
+      });
+      if (fnError) throw fnError;
+      setAdvice(data.advice);
+    } catch (e) {
+      console.error("AI advice error:", e);
+      setError("مقدرناش نجيب التحليل دلوقتي، جرب تاني.");
+    } finally {
+      setLoading(false);
+    }
+  };
 
-        if (fnError) throw fnError;
-        setAdvice(data.advice);
-      } catch (e) {
-        console.error("AI advice error:", e);
-        setError("مقدرناش نجيب التحليل دلوقتي، جرب تاني.");
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchAdvice();
-  }, []);
+  if (!requested) {
+    return (
+      <Button
+        onClick={fetchAdvice}
+        size="lg"
+        variant="outline"
+        className="w-full gap-2 border-primary/50 text-primary font-bold"
+      >
+        <Sparkles className="h-5 w-5" /> 🤖 نصيحة من خبير الشبح
+      </Button>
+    );
+  }
 
   return (
     <Card className="border-primary/30 bg-card">
