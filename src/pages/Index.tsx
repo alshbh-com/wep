@@ -1,10 +1,12 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
 import { saveSubmission, type Submission } from "@/lib/storage";
-import { Ghost, MessageCircle, Send, Share2, TrendingDown, AlertTriangle, ShoppingCart, Building2, Store, Code2 } from "lucide-react";
+import { Ghost, MessageCircle, Send, Share2, TrendingDown, AlertTriangle, ShoppingCart, Building2, Store, Code2, Wrench } from "lucide-react";
 import AiAdvice from "@/components/AiAdvice";
+import { shareForAccuracy, openWhatsApp } from "@/lib/share";
 
 const WHATSAPP_NUMBER = "201061067966";
 
